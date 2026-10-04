@@ -107,6 +107,13 @@ The app is a standard Next.js project with no database: the JSON in `data/` ship
 
 Or, from this folder: `npx vercel` for a preview and `npx vercel --prod` for production.
 
+The repository includes a Vercel Cron job at `/api/cron/keep-alive`, scheduled
+every 10 minutes by [`vercel.json`](./vercel.json). It makes a lightweight
+request so the deployment is exercised regularly; it does not turn a Vercel
+serverless function into a permanently running process. Set `CRON_SECRET` in
+Vercel's environment variables to protect the endpoint. Vercel automatically
+sends that value as a Bearer token for scheduled invocations.
+
 ## How it is put together
 
 ```
